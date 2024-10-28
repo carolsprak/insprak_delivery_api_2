@@ -3,9 +3,11 @@ const server = jsonServer.create()
 const router = jsonServer.router('./database/db.json')
 const middlewares = jsonServer.defaults()
 const bodyParser = require('body-parser')
+const cors = require('cors'); // Importa o CORS para habilitar
 
 const PORT = process.env.PORT || 4589
 
+server.use(cors()); // Permite requisições de diferentes origens
 server.use(middlewares)
 server.use(bodyParser.json())
 
@@ -18,7 +20,7 @@ server.post('/login', (req, res) => {
   if (user) {
     res.json({ success: true, userId: user.id })
   } else {
-    res.status(401).json({ success: false, message: 'Usuário aqou senha incorretos.' })
+    res.status(401).json({ success: false, message: 'Usuário aqui senha incorretos.' })
   } 
 })
 
